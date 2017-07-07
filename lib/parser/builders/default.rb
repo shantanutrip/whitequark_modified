@@ -544,7 +544,7 @@ module Parser
                   lt_t, superclass,
                   body, end_t)
       n(:class, [ name, superclass, body ],
-        module_definition_map(class_t, name, lt_t, end_t))
+        module_definition_map(class_t, name, lt_t, end_t), "class")
     end
 
     def def_sclass(class_t, lshft_t, expr,
@@ -1182,12 +1182,12 @@ module Parser
     # SOURCE MAPS
     #
 
-    def n(type, children, source_map)
-      AST::Node.new("binary_op" ,type, children, :location => source_map)
+    def n(type, children, source_map, tag="default_label")
+      AST::Node.new(tag ,type, children, :location => source_map)
     end
 
-    def n0(type, source_map)
-      n(type, [], source_map)
+    def n0(type, source_map, tag="default_label")
+      n(type, [], source_map, tag)
     end
 
     def join_exprs(left_expr, right_expr)
@@ -1322,7 +1322,7 @@ module Parser
     end
 
     def binary_op_map(left_e, op_t, right_e)
-      puts "hi2"
+      #puts "hi2"
       Source::Map::Operator.new(loc(op_t), join_exprs(left_e, right_e))
     end
 
