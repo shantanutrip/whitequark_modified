@@ -12,6 +12,7 @@ Parser::Runner::RubyParse.go(ARGV)
 def dfs(node)
   if node.is_a? AST::Node
     p node.tag
+    p node
     @childrenList = node.children
     @childrenList.each {|child|
       dfs(child)
