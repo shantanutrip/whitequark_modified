@@ -528,12 +528,12 @@ module Parser
 
     def multi_lhs(begin_t, items, end_t)
       n(:mlhs, [ *items ],
-        collection_map(begin_t, items, end_t))
+        collection_map(begin_t, items, end_t), "multi_lhs")
     end
 
     def multi_assign(lhs, eql_t, rhs)
       n(:masgn, [ lhs, rhs ],
-        binary_op_map(lhs, eql_t, rhs))
+        binary_op_map(lhs, eql_t, rhs), "multi_assign")
     end
 
     #
@@ -544,19 +544,19 @@ module Parser
                   lt_t, superclass,
                   body, end_t)
       n(:class, [ name, superclass, body ],
-        module_definition_map(class_t, name, lt_t, end_t), "class")
+        module_definition_map(class_t, name, lt_t, end_t), "def_class")
     end
 
     def def_sclass(class_t, lshft_t, expr,
                    body, end_t)
       n(:sclass, [ expr, body ],
-        module_definition_map(class_t, nil, lshft_t, end_t))
+        module_definition_map(class_t, nil, lshft_t, end_t), "def_sclass")
     end
 
     def def_module(module_t, name,
                    body, end_t)
       n(:module, [ name, body ],
-        module_definition_map(module_t, name, nil, end_t))
+        module_definition_map(module_t, name, nil, end_t), "def_module")
     end
 
     #
@@ -566,7 +566,7 @@ module Parser
     def def_method(def_t, name_t, args,
                    body, end_t)
       n(:def, [ value(name_t).to_sym, args, body ],
-        definition_map(def_t, nil, name_t, end_t))
+        definition_map(def_t, nil, name_t, end_t), "def_method")
     end
 
     def def_singleton(def_t, definee, dot_t,
@@ -580,18 +580,18 @@ module Parser
 
         else
           n(:defs, [ definee, value(name_t).to_sym, args, body ],
-            definition_map(def_t, dot_t, name_t, end_t))
+            definition_map(def_t, dot_t, name_t, end_t), "def_singleton")
       end
     end
 
     def undef_method(undef_t, names)
       n(:undef, [ *names ],
-        keyword_map(undef_t, nil, names, nil))
+        keyword_map(undef_t, nil, names, nil), "undef_method")
     end
 
     def alias(alias_t, to, from)
       n(:alias, [ to, from ],
-        keyword_map(alias_t, nil, [to, from], nil))
+        keyword_map(alias_t, nil, [to, from], nil), "alias")
     end
 
     #
@@ -601,59 +601,59 @@ module Parser
     def args(begin_t, args, end_t, check_args=true)
       args = check_duplicate_args(args) if check_args
       n(:args, args,
-        collection_map(begin_t, args, end_t))
+        collection_map(begin_t, args, end_t), "args")
     end
 
     def arg(name_t)
       n(:arg, [ value(name_t).to_sym ],
-        variable_map(name_t))
+        variable_map(name_t), "arg")
     end
 
     def optarg(name_t, eql_t, value)
       n(:optarg, [ value(name_t).to_sym, value ],
         variable_map(name_t).
             with_operator(loc(eql_t)).
-            with_expression(loc(name_t).join(value.loc.expression)))
+            with_expression(loc(name_t).join(value.loc.expression)), "optarg")
     end
 
     def restarg(star_t, name_t=nil)
       if name_t
         n(:restarg, [ value(name_t).to_sym ],
-          arg_prefix_map(star_t, name_t))
+          arg_prefix_map(star_t, name_t), "restarg")
       else
         n0(:restarg,
-           arg_prefix_map(star_t))
+           arg_prefix_map(star_t), "restarg")
       end
     end
 
     def kwarg(name_t)
       n(:kwarg, [ value(name_t).to_sym ],
-        kwarg_map(name_t))
+        kwarg_map(name_t), "kwarg")
     end
 
     def kwoptarg(name_t, value)
       n(:kwoptarg, [ value(name_t).to_sym, value ],
-        kwarg_map(name_t, value))
+        kwarg_map(name_t, value), "kwoptarg")
     end
 
     def kwrestarg(dstar_t, name_t=nil)
       if name_t
         n(:kwrestarg, [ value(name_t).to_sym ],
-          arg_prefix_map(dstar_t, name_t))
+          arg_prefix_map(dstar_t, name_t), "kwrestarg")
       else
         n0(:kwrestarg,
-           arg_prefix_map(dstar_t))
+           arg_prefix_map(dstar_t), "kwrestarg")
       end
     end
 
     def shadowarg(name_t)
       n(:shadowarg, [ value(name_t).to_sym ],
-        variable_map(name_t))
+        variable_map(name_t), "shadowarg")
     end
 
     def blockarg(amper_t, name_t)
       n(:blockarg, [ value(name_t).to_sym ],
-        arg_prefix_map(amper_t, name_t))
+        arg_prefix_map(amper_t, name_t), "blockarg")
     end
 
     def procarg0(arg)
@@ -671,18 +671,18 @@ module Parser
         expr.updated(:arg)
       else
         n(:arg_expr, [ expr ],
-          expr.loc.dup)
+          expr.loc.dup, "arg_expr")
       end
     end
 
     def restarg_expr(star_t, expr=nil)
       if expr.nil?
-        n0(:restarg, token_map(star_t))
+        n0(:restarg, token_map(star_t), "restarg_expr")
       elsif expr.type == :lvasgn
         expr.updated(:restarg)
       else
         n(:restarg_expr, [ expr ],
-          expr.loc.dup)
+          expr.loc.dup, "restarg_expr")
       end
     end
 

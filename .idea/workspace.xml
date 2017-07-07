@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aff02464-220c-4521-bc38-1d11e886378b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/parser/builders/default.rb" afterPath="$PROJECT_DIR$/lib/parser/builders/default.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,8 +82,8 @@
       <file leaf-file-name="default.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/parser/builders/default.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="1189" column="33" lean-forward="false" selection-start-line="1189" selection-start-column="33" selection-end-line="1189" selection-end-column="33" />
+            <state relative-caret-position="340">
+              <caret line="684" column="39" lean-forward="true" selection-start-line="684" selection-start-column="39" selection-end-line="684" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -101,10 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.pa</find>
-      <find>binary_op</find>
-      <find>def binary_op</find>
-      <find>buffer.cont</find>
       <find>buffer.con</find>
       <find>c</find>
       <find>cont</find>
@@ -131,6 +126,10 @@
       <find>binary</find>
       <find>hi&quot;</find>
       <find>module</find>
+      <find>def_mod</find>
+      <find>p</find>
+      <find>pro</find>
+      <find>procarg0</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -888,7 +887,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25167000" />
+    <option name="totallyTimeSpent" value="26001000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="0" />
@@ -905,7 +904,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32216907" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38178915" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38178915" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2667173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1326,8 +1325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/parser/builders/default.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="1189" column="33" lean-forward="false" selection-start-line="1189" selection-start-column="33" selection-end-line="1189" selection-end-column="33" />
+        <state relative-caret-position="340">
+          <caret line="684" column="39" lean-forward="true" selection-start-line="684" selection-start-column="39" selection-end-line="684" selection-end-column="39" />
           <folding />
         </state>
       </provider>
