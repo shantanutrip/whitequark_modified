@@ -1,3 +1,4 @@
+require_relative '../../ast_list'
 module Parser
 
   ##
@@ -156,10 +157,18 @@ module Parser
     # @return [Parser::AST::Node]
     #
     def parse(source_buffer)
+      p 'parseT'
       @lexer.source_buffer = source_buffer
       @source_buffer       = source_buffer
 
-      do_parse
+      x = do_parse
+      if x != nil
+        #p x.tag
+        AstList.astListStoreAdd(x)
+      end
+
+      x
+
     ensure
       # Don't keep references to the source file.
       @source_buffer       = nil

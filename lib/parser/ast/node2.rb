@@ -1,3 +1,4 @@
+=begin
 module Parser
   module AST
 
@@ -12,37 +13,14 @@ module Parser
     #  Source map for this Node.
     #  @return [Parser::Source::Map]
     #
-    class Node < ::AST::Node
-      attr_reader :location
-
-      alias loc location
-
-      ##
-      # Assigns various properties to this AST node. Currently only the
-      # location can be set.
-      #
-      # @param [Hash] properties
-      # @option properties [Parser::Source::Map] :location Location information
-      #  of the node.
-      #
-      def assign_properties(properties)
-        if (location = properties[:location])
-          location = location.dup if location.frozen?
-          location.node = self
-          @location = location
-        end
-      end
-
-    end
-
     class Node2 < ::AST::Node
       attr_reader :location, :tag
 
       alias loc location
 
       def initialize(tag_label, type, children, properties)
-        set_tag(tag_label)
         super(type, children, properties)
+        set_tag(tag_label)
         #@type, @children = type.to_sym, children.to_a.freeze
         #assign_properties(properties)
         #@hash = [@type, @children, self.class].hash

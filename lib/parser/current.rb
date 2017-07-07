@@ -1,5 +1,6 @@
 module Parser
   class << self
+    #p "Hi"
     def warn_syntax_deviation(feature, version)
       warn "warning: parser/current is loading #{feature}, which recognizes"
       warn "warning: #{version}-compliant syntax, but you are running #{RUBY_VERSION}."

@@ -2,6 +2,26 @@
 
 $LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
 require 'parser/runner/ruby_parse'
+require_relative '../ast_list'
 
+@obj = AstList.new()
 Parser::Runner::RubyParse.go(ARGV)
-puts "hi"
+@lst = AstList.astListStore
+#@lst.each {|rootNode| p rootNode.tag}
+
+def dfs(node)
+  if node.is_a? AST::Node
+    p node.tag
+    @childrenList = node.children
+    @childrenList.each {|child|
+      dfs(child)
+    }
+  end
+end
+
+
+@lst.each {|rootNode|
+  #p rootNode
+  dfs(rootNode)
+}
+
