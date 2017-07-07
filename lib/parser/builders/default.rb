@@ -846,18 +846,8 @@ module Parser
         end
       end
 
-
-      x = nn2(:send, [ receiver, value(operator_t).to_sym, arg ],
+      n(:send, [ receiver, value(operator_t).to_sym, arg ],
         source_map)
-      puts x.tag
-      x
-      #x = AST::Node2.new(:send, [ receiver, value(operator_t).to_sym, arg ], :location => source_map, :tag_label => "testing")
-      #x = x.dup.set_tag("binary_testing")
-    end
-
-    def nn2(type, children, source_map)
-      #AST::Node2.new("", type, children, :location => source_map)
-      AST::Node2.new("binary_op" ,type, children, :location => source_map)
     end
 
     def match_op(receiver, match_t, arg)
@@ -1193,9 +1183,7 @@ module Parser
     #
 
     def n(type, children, source_map)
-
-      nn2(type, children, source_map)
-      #AST::Node.new(type, children, :location => source_map)
+      AST::Node.new("binary_op" ,type, children, :location => source_map)
     end
 
     def n0(type, source_map)
