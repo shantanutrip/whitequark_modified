@@ -1032,7 +1032,7 @@ module Parser
         compound_stmt =
             n(:ensure,
               [ compound_stmt, ensure_ ],
-              eh_keyword_map(compound_stmt, ensure_t, [ ensure_ ], nil, nil))
+              eh_keyword_map(compound_stmt, ensure_t, [ ensure_ ], nil, nil),"begin_body")
       end
 
       compound_stmt
@@ -1050,7 +1050,7 @@ module Parser
           statements.first
         else
           n(:begin, statements,
-            collection_map(nil, statements, nil))
+            collection_map(nil, statements, nil),"compstmt")
       end
     end
 
@@ -1058,17 +1058,17 @@ module Parser
       if body.nil?
         # A nil expression: `()'.
         n0(:begin,
-           collection_map(begin_t, nil, end_t))
+           collection_map(begin_t, nil, end_t),"begin")
       elsif body.type == :mlhs  ||
           (body.type == :begin &&
               body.loc.begin.nil? && body.loc.end.nil?)
         # Synthesized (begin) from compstmt "a; b" or (mlhs)
         # from multi_lhs "(a, b) = *foo".
         n(body.type, body.children,
-          collection_map(begin_t, body.children, end_t))
+          collection_map(begin_t, body.children, end_t), "begin")
       else
         n(:begin, [ body ],
-          collection_map(begin_t, [ body ], end_t))
+          collection_map(begin_t, [ body ], end_t), "begin")
       end
     end
 
@@ -1076,15 +1076,15 @@ module Parser
       if body.nil?
         # A nil expression: `begin end'.
         n0(:kwbegin,
-           collection_map(begin_t, nil, end_t))
+           collection_map(begin_t, nil, end_t),"begin_keyword")
       elsif (body.type == :begin &&
           body.loc.begin.nil? && body.loc.end.nil?)
         # Synthesized (begin) from compstmt "a; b".
         n(:kwbegin, body.children,
-          collection_map(begin_t, body.children, end_t))
+          collection_map(begin_t, body.children, end_t),"begin_keyword")
       else
         n(:kwbegin, [ body ],
-          collection_map(begin_t, [ body ], end_t))
+          collection_map(begin_t, [ body ], end_t),"begin_keyword")
       end
     end
 
@@ -1131,7 +1131,7 @@ module Parser
           end
 
         when :regexp
-          n(:match_current_line, [ cond ], expr_map(cond.loc.expression))
+          n(:match_current_line, [ cond ], expr_map(cond.loc.expression), "check_condition")
 
         else
           cond
